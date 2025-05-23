@@ -105,6 +105,20 @@ int insert(List &L, int k, SinhVien sv){
 	}
 }
 
+void sapXepChon(List &L) {
+	for (int i = 0; i < L.count; i++) {
+		int minIndex = i;
+		for (int j = i + 1; j <= L.count; j++) {
+			if (L.sv[j].diemTK < L.sv[minIndex].diemTK) {
+				minIndex = j;
+			}
+		}
+		if (minIndex != i) {
+			swap(L.sv[i], L.sv[minIndex]);
+		}
+	}
+}
+
 int main(){
 	create(L);
 	taoDs(L);
@@ -128,5 +142,8 @@ int main(){
 	insert(L,3,sv6);
 	cout<<"danh sach sau khi chen la: "<<endl;
 	display(L);
+	cout<<"danh sach sau khi sap xep chon la: "<<endl;
+    sapXepChon(L);
+    display(L);
 	return 0;
 }

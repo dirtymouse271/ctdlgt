@@ -129,9 +129,22 @@ bool removeByName(TRO &L, string name){
 		curr = curr->next;
 	}
 	return false;
-
-
 }
+
+void sapXepChon(TRO &L) {
+    for (TRO i = L; i != NULL; i = i->next) {
+        TRO minNode = i;
+        for (TRO j = i->next; j != NULL; j = j->next) {
+            if (j->infor.diemTK < minNode->infor.diemTK) {
+                minNode = j;
+            }
+        }
+        if (minNode != i) {
+            swap(i->infor, minNode->infor);
+        }
+    }
+}
+
 
 int main(){
 	create(L);
@@ -155,6 +168,9 @@ int main(){
 	SinhVien sv6 = {"Nguyen Thuy N","nu",3.6};
 	insert(L,2,sv6);
 	cout<<"danh sach sau khi chen la: "<<endl;
+	inDanhSach(L);
+	cout<<"danh sach sau khi sap xep chon la: "<<endl;
+	sapXepChon(L);
 	inDanhSach(L);
 	return 0;
 }
